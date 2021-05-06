@@ -38,35 +38,81 @@ class _MyMainPageState extends State<MyMainPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ImageButton(
-              children: <Widget>[],
-              width: 200,
-              height: 200,
-              label: Text('BMI Calculator',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
-              unpressedImage: Image.asset('assets/bmi.png'),
-              pressedImage: Image.asset('assets/bmi.png'),
-              mainAxisAlignment: MainAxisAlignment.end,
-              onTap: () {
-                print('BMI Button Pressed');
-              },
+            Container(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 35),
+              child: ImageButton(
+                children: <Widget>[],
+                width: 200,
+                height: 200,
+                label: Text('BMI Calculator',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+                unpressedImage: Image.asset('assets/bmi.png'),
+                pressedImage: Image.asset('assets/bmi.png'),
+                mainAxisAlignment: MainAxisAlignment.end,
+                onTap: () {
+                  print('BMI Button Pressed');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => BMICalculatorPage()));
+                },
+              ),
             ),
-            ImageButton(
-              children: <Widget>[],
-              width: 200,
-              height: 200,
-              label: Text('Weight Recorder',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
-              unpressedImage: Image.asset('assets/person.png'),
-              pressedImage: Image.asset('assets/person.png'),
-              mainAxisAlignment: MainAxisAlignment.end,
-              onTap: () {
-                print('Weight Button Presses');
-              },
+            Container(
+              padding: EdgeInsets.fromLTRB(0, 35, 0, 0),
+              child: ImageButton(
+                children: <Widget>[],
+                width: 200,
+                height: 200,
+                label: Text('Weight Recorder',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+                unpressedImage: Image.asset('assets/person.png'),
+                pressedImage: Image.asset('assets/person.png'),
+                mainAxisAlignment: MainAxisAlignment.end,
+                onTap: () {
+                  print('Weight Button Presses');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => WeightRecorderPage()));
+                },
+              ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class BMICalculatorPage extends StatefulWidget {
+  @override
+  _BMICalculatorPageState createState() => _BMICalculatorPageState();
+}
+
+class _BMICalculatorPageState extends State<BMICalculatorPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('BMI Calculator')),
+      body: Center(child: Text('BMI Page')),
+    );
+  }
+}
+
+class WeightRecorderPage extends StatefulWidget {
+  @override
+  _WeightRecorderPageState createState() => _WeightRecorderPageState();
+}
+
+class _WeightRecorderPageState extends State<WeightRecorderPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Weight Recorder')),
+      body: Center(child: Text('Weight Recorder Page')),
     );
   }
 }
