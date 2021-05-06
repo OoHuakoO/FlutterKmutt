@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyMainPage(title: 'Flutter Demo Home Page'),
+      home: MyMainPage(title: 'My BMI App'),
     );
   }
 }
