@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imagebutton/imagebutton.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,14 +28,6 @@ class MyMainPage extends StatefulWidget {
 }
 
 class _MyMainPageState extends State<MyMainPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,11 +38,31 @@ class _MyMainPageState extends State<MyMainPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'xxxxx',
+            ImageButton(
+              children: <Widget>[],
+              width: 200,
+              height: 200,
+              label: Text('BMI Calculator',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+              unpressedImage: Image.asset('assets/bmi.png'),
+              pressedImage: Image.asset('assets/bmi.png'),
+              mainAxisAlignment: MainAxisAlignment.end,
+              onTap: () {
+                print('BMI Button Pressed');
+              },
             ),
-            Text(
-              'xxxxx',
+            ImageButton(
+              children: <Widget>[],
+              width: 200,
+              height: 200,
+              label: Text('Weight Recorder',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+              unpressedImage: Image.asset('assets/person.png'),
+              pressedImage: Image.asset('assets/person.png'),
+              mainAxisAlignment: MainAxisAlignment.end,
+              onTap: () {
+                print('Weight Button Presses');
+              },
             ),
           ],
         ),
