@@ -145,15 +145,16 @@ class WeightInputFormPage extends StatefulWidget {
 class _WeightInputFormPageState extends State<WeightInputFormPage> {
   // ตัวแปรของหน้านี้
   List<Text> _myWeightList = [];
-
+  int _myTodayWeight = 0;
   // ฟังกชันการทำงาน
-  List<Text> showWeightList(int count){
-    for(var i=35 ; i<=count ;i++){
+  List<Text> showWeightList(int count) {
+    for (var i = 35; i <= count; i++) {
       var myTextWeightWidget = Text('${i}');
       _myWeightList.add(myTextWeightWidget);
     }
     return _myWeightList;
   }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -171,15 +172,26 @@ class _WeightInputFormPageState extends State<WeightInputFormPage> {
               style: TextStyle(fontSize: 20.0),
             ),
             Container(
-              height : 200,
+              height: 200,
               child: CupertinoPicker(
                   itemExtent: 35,
                   onSelectedItemChanged: (value) {
-                    print(value);
+                    setState(() {
+                      print('value ${value}');
+                      print('_myWeightList.length ${_myWeightList.length}');
+                      var weightOrder = value % _myWeightList.length;
+                      _myTodayWeight =
+                          int.parse(_myWeightList[weightOrder].data);
+                    });
                   },
-                  scrollController: FixedExtentScrollController(initialItem: 35),
+                  scrollController:
+                      FixedExtentScrollController(initialItem: 35),
                   children: showWeightList(100)),
-            )
+            ),
+            Text(
+              '$_myTodayWeight kg',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 45.0),
+            ),
           ],
         ),
       ),
