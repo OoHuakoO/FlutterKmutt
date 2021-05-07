@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:imagebutton/imagebutton.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:flutter/cupertino.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,6 +35,24 @@ class _MyMainPageState extends State<MyMainPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {
+                showCupertinoModalBottomSheet(
+                  duration: Duration(milliseconds: 500),
+                  context: context,
+                  builder: (context) => WeightInputFormPage(),
+                );
+              },
+              child: Icon(
+                Icons.add,
+                size: 35.0,
+              ),
+            ),
+          )
+        ],
       ),
       body: Center(
         child: Column(
@@ -113,6 +133,56 @@ class _WeightRecorderPageState extends State<WeightRecorderPage> {
     return Scaffold(
       appBar: AppBar(title: Text('Weight Recorder')),
       body: Center(child: Text('Weight Recorder Page')),
+    );
+  }
+}
+
+class WeightInputFormPage extends StatefulWidget {
+  @override
+  _WeightInputFormPageState createState() => _WeightInputFormPageState();
+}
+
+class _WeightInputFormPageState extends State<WeightInputFormPage> {
+  // ตัวแปรของหน้านี้
+  List<Text> _myWeightList = [];
+
+  // ฟังกชันการทำงาน
+  List<Text> showWeightList(int count){
+    for(var i=35 ; i<=count ;i++){
+      var myTextWeightWidget = Text('${i}');
+      _myWeightList.add(myTextWeightWidget);
+    }
+    return _myWeightList;
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: Container(
+        padding: EdgeInsets.fromLTRB(35.0, 35.0, 35.0, 35.0),
+        color: Colors.yellow.shade100,
+        child: Column(
+          children: <Widget>[
+            Text(
+              'Select Your Weight as of',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0),
+            ),
+            Text(
+              'xxxxxxxxx',
+              style: TextStyle(fontSize: 20.0),
+            ),
+            Container(
+              height : 200,
+              child: CupertinoPicker(
+                  itemExtent: 35,
+                  onSelectedItemChanged: (value) {
+                    print(value);
+                  },
+                  scrollController: FixedExtentScrollController(initialItem: 35),
+                  children: showWeightList(100)),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
