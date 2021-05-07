@@ -145,7 +145,7 @@ class WeightInputFormPage extends StatefulWidget {
 class _WeightInputFormPageState extends State<WeightInputFormPage> {
   // ตัวแปรของหน้านี้
   List<Text> _myWeightList = [];
-  int _myTodayWeight = 0;
+  int _myTodayWeight = 70;
   // ฟังกชันการทำงาน
   List<Text> showWeightList(int count) {
     for (var i = 35; i <= count; i++) {
